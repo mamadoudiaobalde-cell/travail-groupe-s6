@@ -164,7 +164,7 @@ Pour toute question ou problème, veuillez contacter l'administrateur système.
 **Auteur :** Abdoulaye Kande  
 **Email :** abdoulaye.kande2@unchk.edu.sn  
 **Date :** 15 Juin 2026  
-**Université :** Cheikh Anta Diop de Dakar
+**Université :** UNCHK
 
 ---
 
