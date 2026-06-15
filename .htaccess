@@ -1,0 +1,73 @@
+# .htaccess
+# Configuration Apache pour le projet GestSoutenance
+
+# Activer le moteur de réécriture
+RewriteEngine On
+
+# Forcer HTTPS en production (décommentez en production)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# Répertoire de base
+RewriteBase /travail-groupe-s6/
+
+# Rediriger vers login si pas de fichier spécifié
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^$ frontend/pages/auth/login.php [L]
+
+# Protection des dossiers sensibles
+RedirectMatch 403 ^/backend/.*$
+RedirectMatch 403 ^/frontend/templates/.*$
+RedirectMatch 403 ^/database/.*$
+
+# Protection du fichier .env
+<Files ".env">
+    Require all denied
+</Files>
+
+# Sécuriser les uploads
+<Directory "frontend/assets/uploads">
+    Options -Indexes
+    <FilesMatch "\.(php|phtml|php3|php4|php5|phps)$">
+        Require all denied
+    </FilesMatch>
+</Directory>
+
+# Empêcher la liste des répertoires
+Options -Indexes
+
+# Charset par défaut
+AddDefaultCharset UTF-8
+
+# Compression GZIP
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Cache navigateur
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# Sécurité : Empêcher le hotlinking
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?votre-domaine.com [NC]
+RewriteRule \.(jpg|jpeg|png|gif)$ - [F,NC]
+
+# Headers de sécurité
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Gestion des erreurs personnalisées
+ErrorDocument 403 /travail-groupe-s6/frontend/pages/errors/403.php
+ErrorDocument 404 /travail-groupe-s6/frontend/pages/errors/404.php
+ErrorDocument 500 /travail-groupe-s6/frontend/pages/errors/500.php
