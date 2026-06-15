@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # GestSoutenance
 
 **Stack :** HTML · CSS · JavaScript · PHP · MySQL
@@ -26,3 +27,6 @@ assets/              → CSS + JS
 login.php            → Connexion
 index.php            → Accueil
 ```
+=======
+projet fin d'etude
+>>>>>>> 31808bed3181c7d61aef9349df026dc93a560f60
