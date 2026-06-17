@@ -17,7 +17,7 @@ Le projet est un **Système de Gestion Numérique des Soutenances Universitaires
 ## 2. Stack Technique et Commandes
 
 ### 2.1. Technologies Clés
-*   **Framework Backend :** Laravel (PHP 8.x)
+*   **Framework Backend :** Laravel (PHP 8.4)
 *   **Base de Données :** MySQL 8.x
 *   **Authentification :** JWT (JSON Web Tokens) pour les API REST, avec gestion des rôles (RBAC).
 *   **Serveur Web local :** WAMP, MAMP, XAMPP ou PHP/MySQL installés directement (pas de Docker).
@@ -26,7 +26,7 @@ Le projet est un **Système de Gestion Numérique des Soutenances Universitaires
 
 ### 2.2. Commandes Essentielles
 
-Prérequis : avoir PHP 8.x, MySQL 8.x et Composer disponibles en local (via WAMP/MAMP/XAMPP ou installation directe).
+Prérequis : avoir PHP 8.4, MySQL 8.x et Composer disponibles en local (via WAMP/MAMP/XAMPP ou installation directe).
 
 Pour installer les dépendances PHP :
 ```bash

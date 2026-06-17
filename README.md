@@ -1,12 +1,12 @@
 # Système de Gestion Numérique des Soutenances Universitaires — Backend
 
-Backend API REST développé en **Laravel (PHP 8.x)** avec **MySQL 8.x**, pour la gestion centralisée et automatisée du cycle de vie des soutenances universitaires (planification, jurys, procès-verbaux, archivage).
+Backend API REST développé en **Laravel (PHP 8.4)** avec **MySQL 8.x**, pour la gestion centralisée et automatisée du cycle de vie des soutenances universitaires (planification, jurys, procès-verbaux, archivage).
 
 ---
 
 ## Prérequis
 
-- PHP >= 8.2 (avec les extensions `pdo_mysql`, `mbstring`, `openssl`, `xml`, `curl`)
+- PHP >= 8.4 (avec les extensions `pdo_mysql`, `mbstring`, `openssl`, `xml`, `curl`)
 - MySQL >= 8.0
 - Composer >= 2.x
 - Un environnement local : WAMP, MAMP, XAMPP ou PHP/MySQL installés directement

@@ -74,7 +74,7 @@ graph TD
 
 ## 4. Environnement de Développement et Déploiement
 
-*   **Environnement Local :** Développement en environnement local classique. Prérequis : PHP 8.x, MySQL 8.x et Composer. Compatible avec WAMP, MAMP, XAMPP ou une installation directe de PHP et MySQL. Le serveur de développement est lancé avec `php artisan serve`.
+*   **Environnement Local :** Développement en environnement local classique. Prérequis : PHP 8.4, MySQL 8.x et Composer. Compatible avec WAMP, MAMP, XAMPP ou une installation directe de PHP et MySQL. Le serveur de développement est lancé avec `php artisan serve`.
 *   **Git et GitHub/GitLab :** Gestion de version du code source, avec un workflow de branches par fonctionnalité et des Pull Requests pour la revue de code.
 *   **CI/CD (Intégration Continue / Déploiement Continu) :** Des pipelines seront mis en place pour automatiser les tests, la construction et le déploiement de l'application (ex: GitHub Actions, GitLab CI/CD).
 
