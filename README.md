@@ -1,171 +1,58 @@
-# 🎓 GestSoutenance - Système de Gestion des Soutenances
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-**Stack :** HTML · CSS · JavaScript · PHP · MySQL
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-## 📋 Table des matières
+## About Laravel
 
-- [Installation](#installation)
-- [Connexion](#connexion)
-- [Structure du projet](#structure-du-projet)
-- [Fonctionnalités](#fonctionnalités)
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
----
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-## 🚀 Installation
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-1. **Cloner le repository**
-   ```bash
-   git clone https://github.com/mamadoudiaobalde-cell/travail-groupe-s6.git
-   cd travail-groupe-s6
-   ```
+## Learning Laravel
 
-2. **Placer dans XAMPP**
-   ```
-   C:\xampp\htdocs\travail-groupe-s6
-   ```
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-3. **Configurer la base de données**
-   - Démarrer XAMPP (Apache + MySQL)
-   - Ouvrir phpMyAdmin : http://localhost/phpmyadmin
-   - Importer `backend/database/schema.sql`
-   - Importer `backend/database/seed.sql`
+In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-4. **Configurer .env**
-   - Dupliquer `.env.example` → `.env`
-   - Configurer vos identifiants MySQL
+You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
 
-5. **Accéder à l'application**
-   ```
-   http://localhost/travail-groupe-s6
-   ```
+## Agentic Development
 
----
+Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
 
-## 🔐 Connexion
+```bash
+composer require laravel/boost --dev
 
-| Rôle | Email | Mot de passe |
-|------|-------|--------------|
-| Admin | admin@univ.sn | password |
-| Secrétaire | secretaire@univ.sn | password |
-| Enseignant | prof@univ.sn | password |
-| Étudiant | etudiant@univ.sn | password |
-| Responsable | responsable@univ.sn | password |
-
----
-
-## 📁 Structure du Projet
-
-```
-travail-groupe-s6/
-├── backend/                    ← API & Logique métier
-│   ├── config/                 → database.php, app.php
-│   ├── includes/               → auth.php, audit.php, fonctions.php
-│   ├── models/                 → User, Salle, Soutenance, Jury, Document, Pv
-│   ├── controllers/            → Auth, Admin, Secrétaire, Enseignant, Étudiant, Responsable
-│   ├── services/               → Mail, PDF, Export, Audit
-│   ├── database/               → schema.sql, seed.sql
-│   └── index.php               → Point d'entrée backend
-│
-├── frontend/                   ← Interface utilisateur
-│   ├── assets/
-│   │   ├── css/                → main, admin, dashboard, forms, tables, responsive, print
-│   │   ├── js/                 → main, auth, charts, validation, filters, modals, notifications, datatable, calendar
-│   │   ├── images/             → logo, favicon, bg-login, empty-state, success
-│   │   ├── fonts/              → inter-regular, inter-bold, inter-semibold
-│   │   └── uploads/            → convocations, pv, attestations, rapports, temp
-│   ├── templates/              → header, footer, navbar, sidebar, modal, alerts, pagination
-│   ├── components/
-│   │   ├── cards/              → stat-card, soutenance-card, user-card
-│   │   ├── forms/              → login-form, user-form, salle-form, soutenance-form, pv-form, indispo-form
-│   │   ├── tables/             → user-table, salle-table, soutenance-table, jury-table
-│   │   └── badges/             → status-badge, role-badge, mention-badge
-│   └── pages/
-│       ├── auth/               → login, logout, changer-mdp, dashboard
-│       ├── admin/              → dashboard, utilisateurs, salles, audit, config
-│       ├── secretaire/         → dashboard, soutenances, convocations, rapports
-│       ├── enseignant/         → dashboard, mes-soutenances, participations, jury-confirm, indisponibilites, pv-saisie
-│       ├── etudiant/           → dashboard, ma-soutenance, convocation, resultats, pv-download, attestation, historique
-│       ├── responsable/        → dashboard, statistiques, exports, alertes, rapports, promotions
-│       └── errors/             → 403, 404, 500
-│
-├── index.php                   → Point d'entrée principal
-├── .env                        → Variables d'environnement
-├── .env.example                → Template .env
-├── .htaccess                   → Configuration Apache
-└── README.md                   → Ce fichier
+php artisan boost:install
 ```
 
----
+Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
 
-## ✨ Fonctionnalités
+## Contributing
 
-### 👨‍💼 Administrateur
-- ✅ Gestion des utilisateurs (CRUD)
-- ✅ Gestion des salles (CRUD)
-- ✅ Consultation des logs d'audit
-- ✅ Configuration système
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-### 👩‍💻 Secrétaire
-- ✅ Planification des soutenances
-- ✅ Génération des convocations
-- ✅ Gestion des rapports
-- ✅ Suivi des soutenances
+## Code of Conduct
 
-### 👨‍🏫 Enseignant
-- ✅ Consultation de mes soutenances
-- ✅ Confirmation de participation jury
-- ✅ Déclaration d'indisponibilités
-- ✅ Saisie des procès-verbaux
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-### 🎓 Étudiant
-- ✅ Consultation de ma soutenance
-- ✅ Téléchargement de la convocation
-- ✅ Consultation des résultats
-- ✅ Téléchargement du PV et attestation
+## Security Vulnerabilities
 
-### 📊 Responsable
-- ✅ Statistiques détaillées
-- ✅ Exports (CSV/PDF)
-- ✅ Alertes à traiter
-- ✅ Rapports personnalisés
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
----
+## License
 
-## 🔒 Sécurité
-
-- ✅ Protection `.htaccess` Apache
-- ✅ Backend non accessible directement
-- ✅ Templates protégés
-- ✅ Fichier `.env` dénié
-- ✅ Uploads sécurisés (pas d'exécution PHP)
-- ✅ Headers de sécurité configurés
-- ✅ Audit des actions utilisateurs
-
----
-
-## 👥 Rôles et Permissions
-
-| Action | Admin | Secrétaire | Enseignant | Étudiant | Responsable |
-|--------|-------|-----------|-----------|----------|------------|
-| Gérer utilisateurs | ✅ | ❌ | ❌ | ❌ | ❌ |
-| Gérer salles | ✅ | ❌ | ❌ | ❌ | ❌ |
-| Planifier soutenances | ❌ | ✅ | ❌ | ❌ | ❌ |
-| Générer convocations | ❌ | ✅ | ❌ | ❌ | ❌ |
-| Saisir PV | ❌ | ❌ | ✅ | ❌ | ❌ |
-| Voir résultats | ❌ | ❌ | ❌ | ✅ | ✅ |
-| Voir statistiques | ❌ | ❌ | ❌ | ❌ | ✅ |
-
----
-
-## 📞 Support
-
-Pour toute question ou problème, veuillez contacter l'administrateur système.
-
-**Auteur :** Abdoulaye Kande  
-**Email :** abdoulaye.kande2@unchk.edu.sn  
-**Date :** 15 Juin 2026  
-**Université :** UNCHK
-
----
-
-**Projet académique - Travail de Groupe S6**
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
