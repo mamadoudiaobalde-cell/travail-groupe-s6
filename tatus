@@ -1,0 +1,153 @@
+[1mdiff --git a/README.md b/README.md[m
+[1mindex 9ad58e6..77d4ab9 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -164,7 +164,7 @@[m [mPour toute question ou problème, veuillez contacter l'administrateur système.[m
+ **Auteur :** Abdoulaye Kande  [m
+ **Email :** abdoulaye.kande2@unchk.edu.sn  [m
+ **Date :** 15 Juin 2026  [m
+[31m-**Université :** UNCHK[m
+[32m+[m[32m**Université :** Cheikh Anta Diop de Dakar[m
+ [m
+ ---[m
+ [m
+[1mdiff --git a/frontend/assets/css/admin.css b/frontend/assets/css/admin.css[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/css/dashboard.css b/frontend/assets/css/dashboard.css[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/css/forms.css b/frontend/assets/css/forms.css[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/css/main.css b/frontend/assets/css/main.css[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/css/print.css b/frontend/assets/css/print.css[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/css/responsive.css b/frontend/assets/css/responsive.css[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/css/tables.css b/frontend/assets/css/tables.css[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/js/auth.js b/frontend/assets/js/auth.js[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/js/calendar.js b/frontend/assets/js/calendar.js[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/js/charts.js b/frontend/assets/js/charts.js[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/js/datatable.js b/frontend/assets/js/datatable.js[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/js/filters.js b/frontend/assets/js/filters.js[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/js/main.js b/frontend/assets/js/main.js[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/js/modals.js b/frontend/assets/js/modals.js[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/js/notifications.js b/frontend/assets/js/notifications.js[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/js/validation.js b/frontend/assets/js/validation.js[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/assets/uploads b/frontend/assets/uploads[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/badges/mention-badge.php b/frontend/components/badges/mention-badge.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/badges/role-badge.php b/frontend/components/badges/role-badge.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/badges/status-badge.php b/frontend/components/badges/status-badge.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/cards/soutenance-card.php b/frontend/components/cards/soutenance-card.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/cards/stat-card.php b/frontend/components/cards/stat-card.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/cards/user-card.php b/frontend/components/cards/user-card.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/forms/indispo-form.php b/frontend/components/forms/indispo-form.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/forms/login-form.php b/frontend/components/forms/login-form.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/forms/pv-form.php b/frontend/components/forms/pv-form.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/forms/salle-form.php b/frontend/components/forms/salle-form.php[m
+[1mdeleted file mode 100644[m
+[1mindex 5bf6d9c..0000000[m
+[1m--- a/frontend/components/forms/salle-form.php[m
+[1m+++ /dev/null[m
+[36m@@ -1,37 +0,0 @@[m
+[31m-<?php $isEdit = !empty($salle['id']); ?>[m
+[31m-<div class="form-card">[m
+[31m-<form method="POST" class="form">[m
+[31m-    <?= csrfField() ?>[m
+[31m-    <div class="form-group">[m
+[31m-        <label for="nom">Nom <span class="required">*</span></label>[m
+[31m-        <input type="text" id="nom" name="nom" required maxlength="100" value="<?= e($salle['nom'] ?? '') ?>" class="<?= isset($errors['nom']) ? 'is-invalid' : '' ?>">[m
+[31m-        <?php if (isset($errors['nom'])): ?><span class="error-text"><?= e($errors['nom']) ?></span><?php endif; ?>[m
+[31m-    </div>[m
+[31m-    <div class="form-row">[m
+[31m-        <div class="form-group">[m
+[31m-            <label for="capacite">Capacité <span class="required">*</span></label>[m
+[31m-            <input type="number" id="capacite" name="capacite" required min="1" max="1000" value="<?= e((string)($salle['capacite'] ?? '')) ?>" class="<?= isset($errors['capacite']) ? 'is-invalid' : '' ?>">[m
+[31m-            <?php if (isset($errors['capacite'])): ?><span class="error-text"><?= e($errors['capacite']) ?></span><?php endif; ?>[m
+[31m-        </div>[m
+[31m-        <div class="form-group">[m
+[31m-            <label for="actif">Statut</label>[m
+[31m-            <select id="actif" name="actif">[m
+[31m-                <option value="1" <?= ($salle['actif'] ?? 1) ? 'selected' : '' ?>>Active</option>[m
+[31m-                <option value="0" <?= !($salle['actif'] ?? 1) ? 'selected' : '' ?>>Inactive</option>[m
+[31m-            </select>[m
+[31m-        </div>[m
+[31m-    </div>[m
+[31m-    <div class="form-group">[m
+[31m-        <label for="localisation">Localisation</label>[m
+[31m-        <input type="text" id="localisation" name="localisation" maxlength="200" value="<?= e($salle['localisation'] ?? '') ?>">[m
+[31m-    </div>[m
+[31m-    <div class="form-group">[m
+[31m-        <label for="equipements">Équipements</label>[m
+[31m-        <textarea id="equipements" name="equipements" rows="3"><?= e($salle['equipements'] ?? '') ?></textarea>[m
+[31m-    </div>[m
+[31m-    <div class="form-actions">[m
+[31m-        <button type="submit" class="btn btn-primary"><?= $isEdit ? 'Enregistrer' : 'Créer la salle' ?></button>[m
+[31m-        <a href="index.php" class="btn btn-outline-dark">Annuler</a>[m
+[31m-    </div>[m
+[31m-</form>[m
+[31m-</div>[m
+[1mdiff --git a/frontend/components/forms/soutenance-form.php b/frontend/components/forms/soutenance-form.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/forms/user-form.php b/frontend/components/forms/user-form.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/tables/jury-table.php b/frontend/components/tables/jury-table.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/tables/salle-table.php b/frontend/components/tables/salle-table.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/tables/soutenance-table.php b/frontend/components/tables/soutenance-table.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/components/tables/user-table.php b/frontend/components/tables/user-table.php[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/frontend/pages/admin/audit.php b/frontend/pages/admin/audi
