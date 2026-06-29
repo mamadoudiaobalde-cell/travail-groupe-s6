@@ -8,6 +8,8 @@ use App\Http\Controllers\Secretaire\JuryController as SecretaireJuryController;
 use App\Http\Controllers\Secretaire\PvController as SecretairePvController;
 use App\Http\Controllers\Enseignant\JuryController as EnseignantJuryController;
 use App\Http\Controllers\Responsable\PvController as ResponsablePvController;
+use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 // ==========================================
@@ -31,6 +33,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// ==========================================
+// DOCUMENTS & NOTIFICATIONS - Accessibles à tout utilisateur authentifié
+// ==========================================
+Route::middleware('auth')->group(function () {
+    Route::get('/documents/{document}/download', [DocumentController::class, 'download'])->name('documents.download');
+
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::put('/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
 });
 
 // ==========================================
