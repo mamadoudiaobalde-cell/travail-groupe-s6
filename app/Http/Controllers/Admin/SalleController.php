@@ -13,7 +13,7 @@ class SalleController extends Controller
      */
     public function index()
     {
-        $salles = Salle::all();
+        $salles = Salle::latest()->paginate(15);
 
         return view('admin.salles.index', compact('salles'));
     }

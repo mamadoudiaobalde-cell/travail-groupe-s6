@@ -23,7 +23,9 @@ class SoutenanceController extends Controller
      */
     public function index()
     {
-        $soutenances = Soutenance::with(['etudiant', 'directeur', 'salle'])->get();
+        $soutenances = Soutenance::with(['etudiant', 'directeur', 'salle'])
+            ->latest()
+            ->paginate(15);
 
         return view('secretaire.soutenances.index', compact('soutenances'));
     }
