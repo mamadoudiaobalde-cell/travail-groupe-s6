@@ -3,17 +3,15 @@
 namespace App\Http\Controllers\Secretaire;
 
 use App\Http\Controllers\Controller;
+use App\Models\Salle;
 use App\Models\Soutenance;
 use App\Models\User;
-use App\Models\Salle;
 use App\Services\NotificationService;
 use Illuminate\Http\Request;
 
 class SoutenanceController extends Controller
 {
-    public function __construct(protected NotificationService $notificationService)
-    {
-    }
+    public function __construct(protected NotificationService $notificationService) {}
 
     /**
      * Display a listing of the resource.
@@ -21,6 +19,7 @@ class SoutenanceController extends Controller
     public function index()
     {
         $soutenances = Soutenance::with(['etudiant', 'directeur', 'salle'])->get();
+
         return view('secretaire.soutenances.index', compact('soutenances'));
     }
 
@@ -32,7 +31,7 @@ class SoutenanceController extends Controller
         $etudiants = User::where('role', 'etudiant')->get();
         $enseignants = User::where('role', 'enseignant')->get();
         $salles = Salle::where('actif', true)->get();
-        
+
         return view('secretaire.soutenances.create', compact('etudiants', 'enseignants', 'salles'));
     }
 
@@ -56,7 +55,7 @@ class SoutenanceController extends Controller
         Soutenance::create($validated);
 
         return redirect()->route('soutenances.index')
-                         ->with('success', 'Soutenance planifiée avec succès');
+            ->with('success', 'Soutenance planifiée avec succès');
     }
 
     /**
@@ -67,7 +66,7 @@ class SoutenanceController extends Controller
         $etudiants = User::where('role', 'etudiant')->get();
         $enseignants = User::where('role', 'enseignant')->get();
         $salles = Salle::where('actif', true)->get();
-        
+
         return view('secretaire.soutenances.edit', compact('soutenance', 'etudiants', 'enseignants', 'salles'));
     }
 
@@ -91,7 +90,7 @@ class SoutenanceController extends Controller
         $soutenance->update($validated);
 
         return redirect()->route('soutenances.index')
-                         ->with('success', 'Soutenance modifiée avec succès');
+            ->with('success', 'Soutenance modifiée avec succès');
     }
 
     /**
@@ -102,7 +101,7 @@ class SoutenanceController extends Controller
         $soutenance->delete();
 
         return redirect()->route('soutenances.index')
-                         ->with('success', 'Soutenance supprimée avec succès');
+            ->with('success', 'Soutenance supprimée avec succès');
     }
 
     /**
@@ -124,7 +123,7 @@ class SoutenanceController extends Controller
         $soutenance->save();
 
         return redirect()->route('soutenances.index')
-                         ->with('success', 'Soutenance confirmée avec succès');
+            ->with('success', 'Soutenance confirmée avec succès');
     }
 
     /**
@@ -139,6 +138,6 @@ class SoutenanceController extends Controller
         $this->notificationService->notifierAnnulation($soutenance);
 
         return redirect()->route('soutenances.index')
-                         ->with('success', 'Soutenance annulée avec succès');
+            ->with('success', 'Soutenance annulée avec succès');
     }
 }

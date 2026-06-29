@@ -7,9 +7,7 @@ use App\Models\User;
 
 class NotificationService
 {
-    public function __construct(protected MailService $mailService)
-    {
-    }
+    public function __construct(protected MailService $mailService) {}
 
     /**
      * Créer une notification in-app pour un utilisateur.

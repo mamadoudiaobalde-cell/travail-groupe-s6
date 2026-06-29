@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Secretaire\SoutenanceController;
+use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\Enseignant\JuryController as EnseignantJuryController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Responsable\PvController as ResponsablePvController;
 use App\Http\Controllers\Secretaire\JuryController as SecretaireJuryController;
 use App\Http\Controllers\Secretaire\PvController as SecretairePvController;
-use App\Http\Controllers\Enseignant\JuryController as EnseignantJuryController;
-use App\Http\Controllers\Responsable\PvController as ResponsablePvController;
-use App\Http\Controllers\DocumentController;
-use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Secretaire\SoutenanceController;
 use Illuminate\Support\Facades\Route;
 
 // ==========================================

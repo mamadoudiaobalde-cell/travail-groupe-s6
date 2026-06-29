@@ -10,9 +10,7 @@ use Illuminate\Http\Request;
 
 class JuryController extends Controller
 {
-    public function __construct(protected MailService $mailService)
-    {
-    }
+    public function __construct(protected MailService $mailService) {}
 
     /**
      * Ajouter un enseignant au jury d'une soutenance.
@@ -29,7 +27,7 @@ class JuryController extends Controller
         $this->mailService->sendInvitationJury($jury->utilisateur, $soutenance);
 
         return redirect()->route('soutenances.show', $soutenance)
-                         ->with('success', 'Enseignant ajouté au jury, invitation envoyée');
+            ->with('success', 'Enseignant ajouté au jury, invitation envoyée');
     }
 
     /**
@@ -41,6 +39,6 @@ class JuryController extends Controller
         $jury->delete();
 
         return redirect()->route('soutenances.show', $soutenance)
-                         ->with('success', 'Membre retiré du jury');
+            ->with('success', 'Membre retiré du jury');
     }
 }

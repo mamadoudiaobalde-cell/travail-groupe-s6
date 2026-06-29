@@ -10,9 +10,7 @@ use Illuminate\Http\Request;
 
 class PvController extends Controller
 {
-    public function __construct(protected PdfService $pdfService)
-    {
-    }
+    public function __construct(protected PdfService $pdfService) {}
 
     /**
      * Saisir les résultats d'une soutenance.
@@ -33,7 +31,7 @@ class PvController extends Controller
         $pv = $soutenance->pv()->create($validated);
 
         return redirect()->route('soutenances.show', $soutenance)
-                         ->with('success', 'PV enregistré avec la mention ' . $pv->mention);
+            ->with('success', 'PV enregistré avec la mention '.$pv->mention);
     }
 
     /**
@@ -55,7 +53,7 @@ class PvController extends Controller
         $pv->update($validated);
 
         return redirect()->route('soutenances.show', $pv->soutenance)
-                         ->with('success', 'PV mis à jour');
+            ->with('success', 'PV mis à jour');
     }
 
     /**
@@ -71,7 +69,7 @@ class PvController extends Controller
         $pv->save();
 
         return redirect()->route('soutenances.show', $pv->soutenance)
-                         ->with('success', 'PV soumis pour validation');
+            ->with('success', 'PV soumis pour validation');
     }
 
     /**
@@ -82,7 +80,7 @@ class PvController extends Controller
         $soutenance = $pv->soutenance;
         $pdfContent = $this->pdfService->generatePV($soutenance, $pv, $soutenance->jury);
 
-        $filename = 'pv_' . $soutenance->id . '.pdf';
+        $filename = 'pv_'.$soutenance->id.'.pdf';
         $pv->fichier_pdf = $this->pdfService->save($pdfContent, $filename);
         $pv->save();
 

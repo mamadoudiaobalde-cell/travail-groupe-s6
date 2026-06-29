@@ -14,6 +14,7 @@ class SalleController extends Controller
     public function index()
     {
         $salles = Salle::all();
+
         return view('admin.salles.index', compact('salles'));
     }
 
@@ -41,7 +42,7 @@ class SalleController extends Controller
         Salle::create($validated);
 
         return redirect()->route('salles.index')
-                         ->with('success', 'Salle créée avec succès');
+            ->with('success', 'Salle créée avec succès');
     }
 
     /**
@@ -68,7 +69,7 @@ class SalleController extends Controller
         $salle->update($validated);
 
         return redirect()->route('salles.index')
-                         ->with('success', 'Salle modifiée avec succès');
+            ->with('success', 'Salle modifiée avec succès');
     }
 
     /**
@@ -79,12 +80,12 @@ class SalleController extends Controller
         // Vérifier si la salle est utilisée dans des soutenances
         if ($salle->soutenances()->count() > 0) {
             return redirect()->route('salles.index')
-                             ->with('error', 'Cette salle est utilisée dans des soutenances');
+                ->with('error', 'Cette salle est utilisée dans des soutenances');
         }
 
         $salle->delete();
 
         return redirect()->route('salles.index')
-                         ->with('success', 'Salle supprimée avec succès');
+            ->with('success', 'Salle supprimée avec succès');
     }
 }

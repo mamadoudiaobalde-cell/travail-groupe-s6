@@ -21,7 +21,7 @@ class PvController extends Controller
         $pv->save();
 
         return redirect()->route('responsable.dashboard')
-                         ->with('success', 'PV validé');
+            ->with('success', 'PV validé');
     }
 
     /**
@@ -38,10 +38,10 @@ class PvController extends Controller
         ]);
 
         $pv->status = 'brouillon';
-        $pv->observations = trim(($pv->observations ? $pv->observations . "\n\n" : '') . '[Refus] ' . $validated['commentaire']);
+        $pv->observations = trim(($pv->observations ? $pv->observations."\n\n" : '').'[Refus] '.$validated['commentaire']);
         $pv->save();
 
         return redirect()->route('responsable.dashboard')
-                         ->with('success', 'PV refusé et renvoyé à la secrétaire');
+            ->with('success', 'PV refusé et renvoyé à la secrétaire');
     }
 }

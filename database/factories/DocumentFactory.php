@@ -21,7 +21,7 @@ class DocumentFactory extends Factory
         return [
             'soutenance_id' => Soutenance::factory(),
             'type' => fake()->randomElement(['pv', 'convocation', 'attestation']),
-            'chemin_fichier' => 'documents/' . fake()->uuid() . '.pdf',
+            'chemin_fichier' => 'documents/'.fake()->uuid().'.pdf',
             'hash_fichier' => hash('sha256', fake()->uuid()),
         ];
     }

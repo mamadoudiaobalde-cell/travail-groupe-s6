@@ -18,9 +18,9 @@ class SalleFactory extends Factory
     public function definition(): array
     {
         return [
-            'nom' => 'Salle ' . fake()->unique()->bothify('??-##'),
+            'nom' => 'Salle '.fake()->unique()->bothify('??-##'),
             'capacite' => fake()->numberBetween(10, 100),
-            'localisation' => 'Bâtiment ' . fake()->randomLetter(),
+            'localisation' => 'Bâtiment '.fake()->randomLetter(),
             'equipements' => 'Vidéoprojecteur, tableau',
             'actif' => true,
         ];

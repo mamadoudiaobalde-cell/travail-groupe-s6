@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Salle;
 use App\Models\Soutenance;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class SoutenanceSeeder extends Seeder
@@ -21,6 +20,7 @@ class SoutenanceSeeder extends Seeder
 
         if ($etudiants->isEmpty() || $enseignants->isEmpty()) {
             $this->command?->warn('Aucun étudiant/enseignant trouvé : exécutez UserSeeder avant SoutenanceSeeder.');
+
             return;
         }
 

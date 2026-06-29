@@ -22,7 +22,7 @@ class SoutenanceFactory extends Factory
         return [
             'etudiant_id' => User::factory()->state(['role' => 'etudiant']),
             'directeur_id' => User::factory()->state(['role' => 'enseignant']),
-            'titre' => 'Étude sur ' . fake()->words(3, true),
+            'titre' => 'Étude sur '.fake()->words(3, true),
             'filiere' => fake()->randomElement(['Informatique', 'Génie Civil', 'Gestion', 'Réseaux']),
             'type' => fake()->randomElement(['licence', 'master', 'doctorat']),
             'date' => fake()->dateTimeBetween('+1 week', '+2 months')->format('Y-m-d'),

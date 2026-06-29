@@ -35,12 +35,23 @@ class Pv extends Model
     // Calculer la mention automatiquement
     public static function calculerMention($note)
     {
-        if ($note === null) return null;
-        
-        if ($note >= 16) return 'Excellent';
-        if ($note >= 14) return 'Tres bien';
-        if ($note >= 12) return 'Bien';
-        if ($note >= 10) return 'Assez bien';
+        if ($note === null) {
+            return null;
+        }
+
+        if ($note >= 16) {
+            return 'Excellent';
+        }
+        if ($note >= 14) {
+            return 'Tres bien';
+        }
+        if ($note >= 12) {
+            return 'Bien';
+        }
+        if ($note >= 10) {
+            return 'Assez bien';
+        }
+
         return 'Passable';
     }
 

@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -42,7 +41,7 @@ class UserSeeder extends Seeder
         foreach ($enseignants as $nom) {
             User::factory()->create([
                 'name' => $nom,
-                'email' => str()->slug($nom) . '@gestsoutenance.test',
+                'email' => str()->slug($nom).'@gestsoutenance.test',
                 'role' => 'enseignant',
                 'department' => 'Informatique',
             ]);
@@ -60,7 +59,7 @@ class UserSeeder extends Seeder
         foreach ($etudiants as $nom) {
             User::factory()->create([
                 'name' => $nom,
-                'email' => str()->slug($nom) . '@etudiant.gestsoutenance.test',
+                'email' => str()->slug($nom).'@etudiant.gestsoutenance.test',
                 'role' => 'etudiant',
             ]);
         }

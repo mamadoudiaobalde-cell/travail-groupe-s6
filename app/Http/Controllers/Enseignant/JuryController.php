@@ -19,7 +19,7 @@ class JuryController extends Controller
         $jury->save();
 
         return redirect()->route('enseignant.dashboard')
-                         ->with('success', 'Participation au jury confirmée');
+            ->with('success', 'Participation au jury confirmée');
     }
 
     /**
@@ -33,6 +33,6 @@ class JuryController extends Controller
         $jury->save();
 
         return redirect()->route('enseignant.dashboard')
-                         ->with('success', 'Participation au jury refusée');
+            ->with('success', 'Participation au jury refusée');
     }
 }
