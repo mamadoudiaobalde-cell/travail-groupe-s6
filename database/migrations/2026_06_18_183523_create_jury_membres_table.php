@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('jury_membres', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('soutenance_id')->constrained('soutenances');
+            $table->foreignId('utilisateur_id')->constrained('users');
+            $table->enum('role', ['president', 'directeur', 'rapporteur', 'membre']);
+            $table->enum('statut_confirmation', ['en_attente', 'confirme', 'refuse'])->default('en_attente');
             $table->timestamps();
         });
     }

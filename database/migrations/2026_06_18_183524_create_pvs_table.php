@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('pvs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('soutenance_id')->unique()->constrained('soutenances');
+            $table->decimal('note', 4, 2)->nullable();
+            $table->string('mention')->nullable();
+            $table->text('observations')->nullable();
+            $table->enum('status', ['brouillon', 'en_validation', 'valide', 'signe', 'archive'])->default('brouillon');
+            $table->string('fichier_pdf')->nullable();
+            $table->date('signe_le')->nullable();
             $table->timestamps();
         });
     }

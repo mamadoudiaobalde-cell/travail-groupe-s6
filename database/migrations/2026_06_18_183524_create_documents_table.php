@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('soutenance_id')->constrained('soutenances');
+            $table->enum('type', ['pv', 'convocation', 'attestation']);
+            $table->string('chemin_fichier');
+            $table->string('hash_fichier');
             $table->timestamps();
         });
     }

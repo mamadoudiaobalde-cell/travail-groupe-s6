@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('salles', function (Blueprint $table) {
             $table->id();
+            $table->string('nom')->unique();
+            $table->integer('capacite')->nullable();
+            $table->string('localisation')->nullable();
+            $table->text('equipements')->nullable();
+            $table->boolean('actif')->default(true);
             $table->timestamps();
         });
     }

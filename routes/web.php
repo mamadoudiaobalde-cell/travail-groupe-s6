@@ -45,6 +45,8 @@ Route::middleware(['auth', 'verified', 'role:secretaire_pedagogique,administrate
         return view('secretaire.dashboard');
     })->name('secretaire.dashboard');
     Route::resource('/soutenances', SoutenanceController::class);
+    Route::put('/soutenances/{soutenance}/confirm', [SoutenanceController::class, 'confirm'])->name('secretaire.soutenances.confirm');
+    Route::put('/soutenances/{soutenance}/cancel', [SoutenanceController::class, 'cancel'])->name('secretaire.soutenances.cancel');
 });
 
 // ==========================================

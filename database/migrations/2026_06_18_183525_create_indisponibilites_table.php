@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('indisponibilites', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('utilisateur_id')->constrained('users');
+            $table->date('date_debut');
+            $table->date('date_fin');
+            $table->string('motif')->nullable();
             $table->timestamps();
         });
     }
