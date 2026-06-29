@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\Enseignant\IndisponibiliteController;
 use App\Http\Controllers\Enseignant\JuryController as EnseignantJuryController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
@@ -83,6 +84,11 @@ Route::middleware(['auth', 'verified', 'role:enseignant'])->prefix('enseignant')
 
     Route::put('/jury/{jury}/confirm', [EnseignantJuryController::class, 'confirm'])->name('enseignant.jury.confirm');
     Route::put('/jury/{jury}/decline', [EnseignantJuryController::class, 'decline'])->name('enseignant.jury.decline');
+
+    Route::get('/indisponibilites', [IndisponibiliteController::class, 'index'])->name('enseignant.indisponibilites.index');
+    Route::post('/indisponibilites', [IndisponibiliteController::class, 'store'])->name('enseignant.indisponibilites.store');
+    Route::put('/indisponibilites/{indisponibilite}', [IndisponibiliteController::class, 'update'])->name('enseignant.indisponibilites.update');
+    Route::delete('/indisponibilites/{indisponibilite}', [IndisponibiliteController::class, 'destroy'])->name('enseignant.indisponibilites.destroy');
 });
 
 // ==========================================

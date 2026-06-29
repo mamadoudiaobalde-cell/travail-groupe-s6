@@ -5,12 +5,17 @@ namespace App\Http\Controllers\Secretaire;
 use App\Http\Controllers\Controller;
 use App\Models\Pv;
 use App\Models\Soutenance;
+use App\Services\AuditService;
 use App\Services\PdfService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PvController extends Controller
 {
-    public function __construct(protected PdfService $pdfService) {}
+    public function __construct(
+        protected PdfService $pdfService,
+        protected AuditService $auditService,
+    ) {}
 
     /**
      * Saisir les résultats d'une soutenance.
@@ -29,6 +34,8 @@ class PvController extends Controller
         $validated['mention'] = Pv::calculerMention($validated['note']);
 
         $pv = $soutenance->pv()->create($validated);
+
+        $this->auditService->log(Auth::id(), 'pv.store', "PV créé pour la soutenance #{$soutenance->id} (note {$pv->note})");
 
         return redirect()->route('soutenances.show', $soutenance)
             ->with('success', 'PV enregistré avec la mention '.$pv->mention);
@@ -52,6 +59,8 @@ class PvController extends Controller
 
         $pv->update($validated);
 
+        $this->auditService->log(Auth::id(), 'pv.update', "PV #{$pv->id} mis à jour (note {$pv->note})");
+
         return redirect()->route('soutenances.show', $pv->soutenance)
             ->with('success', 'PV mis à jour');
     }
@@ -67,6 +76,8 @@ class PvController extends Controller
 
         $pv->status = 'en_validation';
         $pv->save();
+
+        $this->auditService->log(Auth::id(), 'pv.submit', "PV #{$pv->id} soumis pour validation");
 
         return redirect()->route('soutenances.show', $pv->soutenance)
             ->with('success', 'PV soumis pour validation');
