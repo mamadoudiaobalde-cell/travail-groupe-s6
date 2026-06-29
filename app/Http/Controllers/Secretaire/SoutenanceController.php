@@ -6,10 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Soutenance;
 use App\Models\User;
 use App\Models\Salle;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 
 class SoutenanceController extends Controller
 {
+    public function __construct(protected NotificationService $notificationService)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -106,6 +111,15 @@ class SoutenanceController extends Controller
     public function confirm($id)
     {
         $soutenance = Soutenance::findOrFail($id);
+
+        if (! $soutenance->salle_id) {
+            return redirect()->back()->with('error', 'Impossible de confirmer : aucune salle n\'est assignée');
+        }
+
+        if ($soutenance->jury()->count() === 0) {
+            return redirect()->back()->with('error', 'Impossible de confirmer : aucun jury n\'est composé');
+        }
+
         $soutenance->statut = 'confirmee';
         $soutenance->save();
 
@@ -121,6 +135,8 @@ class SoutenanceController extends Controller
         $soutenance = Soutenance::findOrFail($id);
         $soutenance->statut = 'annulee';
         $soutenance->save();
+
+        $this->notificationService->notifierAnnulation($soutenance);
 
         return redirect()->route('soutenances.index')
                          ->with('success', 'Soutenance annulée avec succès');

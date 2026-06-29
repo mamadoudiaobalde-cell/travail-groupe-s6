@@ -68,4 +68,21 @@ class NotificationService
             "Le résultat de votre soutenance \"{$soutenance->titre}\" est disponible."
         );
     }
+
+    /**
+     * Notifier l'étudiant et les membres du jury de l'annulation d'une soutenance.
+     */
+    public function notifierAnnulation($soutenance): void
+    {
+        $destinataires = $soutenance->jury->pluck('utilisateur_id')->push($soutenance->etudiant_id)->unique();
+
+        foreach ($destinataires as $utilisateurId) {
+            $this->notify(
+                $utilisateurId,
+                'annulation',
+                'Soutenance annulée',
+                "La soutenance \"{$soutenance->titre}\" prévue le {$soutenance->date} a été annulée."
+            );
+        }
+    }
 }
