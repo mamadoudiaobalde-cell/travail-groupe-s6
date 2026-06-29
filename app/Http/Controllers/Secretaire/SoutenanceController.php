@@ -50,7 +50,7 @@ class SoutenanceController extends Controller
 
         Soutenance::create($validated);
 
-        return redirect()->route('secretaire.soutenances.index')
+        return redirect()->route('soutenances.index')
                          ->with('success', 'Soutenance planifiée avec succès');
     }
 
@@ -85,7 +85,7 @@ class SoutenanceController extends Controller
 
         $soutenance->update($validated);
 
-        return redirect()->route('secretaire.soutenances.index')
+        return redirect()->route('soutenances.index')
                          ->with('success', 'Soutenance modifiée avec succès');
     }
 
@@ -96,7 +96,7 @@ class SoutenanceController extends Controller
     {
         $soutenance->delete();
 
-        return redirect()->route('secretaire.soutenances.index')
+        return redirect()->route('soutenances.index')
                          ->with('success', 'Soutenance supprimée avec succès');
     }
 
@@ -109,7 +109,7 @@ class SoutenanceController extends Controller
         $soutenance->statut = 'confirmee';
         $soutenance->save();
 
-        return redirect()->route('secretaire.soutenances.index')
+        return redirect()->route('soutenances.index')
                          ->with('success', 'Soutenance confirmée avec succès');
     }
 
@@ -122,7 +122,7 @@ class SoutenanceController extends Controller
         $soutenance->statut = 'annulee';
         $soutenance->save();
 
-        return redirect()->route('secretaire.soutenances.index')
+        return redirect()->route('soutenances.index')
                          ->with('success', 'Soutenance annulée avec succès');
     }
 }

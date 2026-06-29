@@ -4,6 +4,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Secretaire\SoutenanceController;
+use App\Http\Controllers\Secretaire\JuryController as SecretaireJuryController;
+use App\Http\Controllers\Secretaire\PvController as SecretairePvController;
+use App\Http\Controllers\Enseignant\JuryController as EnseignantJuryController;
+use App\Http\Controllers\Responsable\PvController as ResponsablePvController;
 use Illuminate\Support\Facades\Route;
 
 // ==========================================
@@ -47,6 +51,14 @@ Route::middleware(['auth', 'verified', 'role:secretaire_pedagogique,administrate
     Route::resource('/soutenances', SoutenanceController::class);
     Route::put('/soutenances/{soutenance}/confirm', [SoutenanceController::class, 'confirm'])->name('secretaire.soutenances.confirm');
     Route::put('/soutenances/{soutenance}/cancel', [SoutenanceController::class, 'cancel'])->name('secretaire.soutenances.cancel');
+
+    Route::post('/soutenances/{soutenance}/jury', [SecretaireJuryController::class, 'store'])->name('secretaire.jury.store');
+    Route::delete('/jury/{jury}', [SecretaireJuryController::class, 'destroy'])->name('secretaire.jury.destroy');
+
+    Route::post('/soutenances/{soutenance}/pv', [SecretairePvController::class, 'store'])->name('secretaire.pv.store');
+    Route::put('/pv/{pv}', [SecretairePvController::class, 'update'])->name('secretaire.pv.update');
+    Route::put('/pv/{pv}/submit', [SecretairePvController::class, 'submitForValidation'])->name('secretaire.pv.submit');
+    Route::get('/pv/{pv}/pdf', [SecretairePvController::class, 'generatePdf'])->name('secretaire.pv.pdf');
 });
 
 // ==========================================
@@ -56,6 +68,9 @@ Route::middleware(['auth', 'verified', 'role:enseignant'])->prefix('enseignant')
     Route::get('/dashboard', function () {
         return view('enseignant.dashboard');
     })->name('enseignant.dashboard');
+
+    Route::put('/jury/{jury}/confirm', [EnseignantJuryController::class, 'confirm'])->name('enseignant.jury.confirm');
+    Route::put('/jury/{jury}/decline', [EnseignantJuryController::class, 'decline'])->name('enseignant.jury.decline');
 });
 
 // ==========================================
@@ -74,6 +89,9 @@ Route::middleware(['auth', 'verified', 'role:responsable_pedagogique'])->prefix(
     Route::get('/dashboard', function () {
         return view('responsable.dashboard');
     })->name('responsable.dashboard');
+
+    Route::put('/pv/{pv}/validate', [ResponsablePvController::class, 'validatePv'])->name('responsable.pv.validate');
+    Route::put('/pv/{pv}/reject', [ResponsablePvController::class, 'reject'])->name('responsable.pv.reject');
 });
 
 // ==========================================

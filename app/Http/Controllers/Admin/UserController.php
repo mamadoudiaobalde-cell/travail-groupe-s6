@@ -45,7 +45,7 @@ class UserController extends Controller
             'is_active' => true,
         ]);
 
-        return redirect()->route('admin.users.index')
+        return redirect()->route('users.index')
                          ->with('success', 'Utilisateur créé avec succès. Mot de passe : password123');
     }
 
@@ -82,7 +82,7 @@ class UserController extends Controller
 
         $user->update($validated);
 
-        return redirect()->route('admin.users.index')
+        return redirect()->route('users.index')
                          ->with('success', 'Utilisateur modifié avec succès');
     }
 
@@ -94,13 +94,13 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         if ($user->role === 'administrateur') {
-            return redirect()->route('admin.users.index')
+            return redirect()->route('users.index')
                              ->with('error', 'Impossible de supprimer un administrateur');
         }
 
         $user->delete();
 
-        return redirect()->route('admin.users.index')
+        return redirect()->route('users.index')
                          ->with('success', 'Utilisateur supprimé avec succès');
     }
 
@@ -112,7 +112,7 @@ class UserController extends Controller
         $user->is_active = !$user->is_active;
         $user->save();
 
-        return redirect()->route('admin.users.index')
+        return redirect()->route('users.index')
                          ->with('success', 'Statut modifié avec succès');
     }
 
@@ -124,7 +124,7 @@ class UserController extends Controller
         $user->password = Hash::make('password123');
         $user->save();
 
-        return redirect()->route('admin.users.index')
+        return redirect()->route('users.index')
                          ->with('success', 'Mot de passe réinitialisé à "password123"');
     }
 }
