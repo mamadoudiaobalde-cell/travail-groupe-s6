@@ -51,9 +51,19 @@ Route::middleware(['auth', 'verified', 'role:secretaire_pedagogique,administrate
 // ENSEIGNANT - Routes protégées par rôle
 // ==========================================
 Route::middleware(['auth', 'verified', 'role:enseignant'])->prefix('enseignant')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('enseignant.dashboard');
-    })->name('enseignant.dashboard');
+    Route::get('/dashboard', [App\Http\Controllers\Enseignant\DashboardController::class, 'index'])->name('enseignant.dashboard');
+    
+    // Routes Jury
+    Route::get('/jury', [App\Http\Controllers\Enseignant\JuryController::class, 'index'])->name('enseignant.jury');
+    Route::post('/jury/{id}/confirm', [App\Http\Controllers\Enseignant\JuryController::class, 'confirm'])->name('enseignant.jury.confirm');
+    Route::post('/jury/{id}/refuse', [App\Http\Controllers\Enseignant\JuryController::class, 'refuse'])->name('enseignant.jury.refuse');
+    
+    // Routes PV
+    Route::get('/pv/{soutenance}/create', [App\Http\Controllers\Enseignant\PvController::class, 'create'])->name('enseignant.pv.create');
+    Route::post('/pv', [App\Http\Controllers\Enseignant\PvController::class, 'store'])->name('enseignant.pv.store');
+    Route::get('/pv/{pv}/edit', [App\Http\Controllers\Enseignant\PvController::class, 'edit'])->name('enseignant.pv.edit');
+    Route::put('/pv/{pv}', [App\Http\Controllers\Enseignant\PvController::class, 'update'])->name('enseignant.pv.update');
+    Route::get('/pv/{pv}', [App\Http\Controllers\Enseignant\PvController::class, 'show'])->name('enseignant.pv.show');
 });
 
 // ==========================================
