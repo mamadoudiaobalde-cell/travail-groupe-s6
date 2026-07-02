@@ -22,5 +22,7 @@
     <?php if (isset($includeCalendar) && $includeCalendar): ?>
     <script src="/assets/js/calendar.js"></script>
     <?php endif; ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/frontend/assets/js/main.js"></script>
 </body>
 </html>
