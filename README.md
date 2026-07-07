@@ -173,7 +173,7 @@ Pour toute question ou problème, veuillez contacter l'administrateur système.
 
 ## 📖 Présentation du Projet
 
-**GestSoutenance** est une application web développée pour **l'Université de Thiès / UNCHK** dans le cadre d'un projet de fin d'études.
+**GestSoutenance** est une application web développée pour **l'Université   UNCHK** dans le cadre d'un projet de fin d'études.
 
 L'objectif principal est de **numériser et d'optimiser la gestion des soutenances universitaires** en remplaçant les processus manuels (papiers, emails, tableaux Excel) par une plateforme centralisée, sécurisée et accessible en ligne.
 
