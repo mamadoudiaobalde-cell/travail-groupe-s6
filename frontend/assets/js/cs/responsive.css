@@ -1,0 +1,199 @@
+/* Styles responsifs */
+
+/* Medium devices (tablets) */
+@media (max-width: 992px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Small devices (phones) */
+@media (max-width: 768px) {
+    /* Header */
+    .header-container {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 15px;
+    }
+    
+    .nav {
+        width: 100%;
+    }
+    
+    .nav ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 5px;
+    }
+    
+    .nav ul li {
+        width: 100%;
+    }
+    
+    .nav ul li a {
+        display: block;
+        text-align: center;
+        padding: 10px;
+    }
+    
+    .nav-right {
+        margin-left: 0;
+        padding-left: 0;
+        border-left: none;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    /* Dashboard */
+    .dashboard-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .dashboard-charts {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Tables */
+    .table-container {
+        border-radius: 0;
+        margin: 0 -15px;
+    }
+    
+    .table-wrapper {
+        padding: 0 15px;
+    }
+    
+    /* Forms */
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions .btn {
+        width: 100%;
+    }
+    
+    /* Modals */
+    .modal-content {
+        margin: 10px;
+        padding: 20px;
+        max-width: 100%;
+    }
+    
+    /* Cards */
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    /* Filters */
+    .filter-form {
+        flex-direction: column;
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+    
+    /* Auth */
+    .auth-container {
+        padding: 10px;
+    }
+    
+    .auth-card {
+        padding: 20px;
+    }
+    
+    /* Pagination */
+    .table-pagination {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .admin-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .user-filters {
+        flex-direction: column;
+    }
+    
+    .user-filters .filter-group {
+        width: 100%;
+    }
+    
+    .user-filters .filter-group input,
+    .user-filters .filter-group select {
+        width: 100%;
+    }
+    
+    .table {
+        font-size: 12px;
+    }
+    
+    .table thead th,
+    .table tbody td {
+        padding: 8px 10px;
+    }
+    
+    .auth-header h1 {
+        font-size: 20px;
+    }
+    
+    .btn {
+        font-size: 13px;
+        padding: 8px 15px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .header,
+    .footer,
+    .btn,
+    .no-print {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .card,
+    .table-container {
+        box-shadow: none !important;
+        border: 1px solid #ddd;
+    }
+    
+    body {
+        background: white;
+    }
+}
