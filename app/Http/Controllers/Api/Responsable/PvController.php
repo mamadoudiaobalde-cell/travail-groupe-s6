@@ -13,6 +13,15 @@ class PvController extends Controller
 {
     public function __construct(protected AuditService $auditService) {}
 
+    public function index()
+    {
+        $pvs = Pv::with(['soutenance.etudiant', 'soutenance.salle', 'soutenance.jury'])
+            ->latest()
+            ->paginate(15);
+
+        return PvResource::collection($pvs);
+    }
+
     public function validatePv(Pv $pv)
     {
         if ($pv->status !== 'en_validation') {

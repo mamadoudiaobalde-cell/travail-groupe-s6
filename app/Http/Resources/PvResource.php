@@ -18,6 +18,7 @@ class PvResource extends JsonResource
             'status' => $this->status,
             'fichier_pdf' => $this->fichier_pdf,
             'signe_le' => $this->signe_le?->toDateString(),
+            'soutenance' => new SoutenanceResource($this->whenLoaded('soutenance')),
         ];
     }
 }

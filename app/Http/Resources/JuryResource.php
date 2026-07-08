@@ -15,6 +15,7 @@ class JuryResource extends JsonResource
             'role' => $this->role,
             'statut_confirmation' => $this->statut_confirmation,
             'utilisateur' => new UserResource($this->whenLoaded('utilisateur')),
+            'soutenance' => new SoutenanceResource($this->whenLoaded('soutenance')),
         ];
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\DocumentController;
 use App\Http\Controllers\Api\Enseignant\IndisponibiliteController;
 use App\Http\Controllers\Api\Enseignant\JuryController as EnseignantJuryController;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\Responsable\ExportController as ResponsableExportController;
 use App\Http\Controllers\Api\Responsable\PvController as ResponsablePvController;
 use App\Http\Controllers\Api\Secretaire\JuryController as SecretaireJuryController;
 use App\Http\Controllers\Api\Secretaire\PvController as SecretairePvController;
@@ -71,8 +72,10 @@ Route::middleware('auth:sanctum')->group(function () {
     // RESPONSABLE PÉDAGOGIQUE
     // ==========================================
     Route::middleware('role:responsable_pedagogique')->prefix('responsable')->group(function () {
+        Route::get('pv', [ResponsablePvController::class, 'index']);
         Route::put('pv/{pv}/validate', [ResponsablePvController::class, 'validatePv']);
         Route::put('pv/{pv}/reject', [ResponsablePvController::class, 'reject']);
+        Route::get('export/{format}', [ResponsableExportController::class, 'export']);
     });
 
     // ==========================================

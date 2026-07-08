@@ -21,7 +21,7 @@ class SoutenanceResource extends JsonResource
             'directeur' => new UserResource($this->whenLoaded('directeur')),
             'salle' => new SalleResource($this->whenLoaded('salle')),
             'jury' => JuryResource::collection($this->whenLoaded('jury')),
-            'pv' => new PvResource($this->whenLoaded('pv')),
+            'pv' => $this->whenLoaded('pv', fn () => $this->pv ? new PvResource($this->pv) : null),
             'created_at' => $this->created_at?->toDateTimeString(),
         ];
     }
