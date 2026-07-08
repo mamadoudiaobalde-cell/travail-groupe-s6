@@ -26,6 +26,12 @@ section() { echo -e "\n${GREEN}━━━ $1 ━━━${NC}"; }
 
 VPS_IP=$(curl -s --max-time 5 ifconfig.me || hostname -I | awk '{print $1}')
 info "IP détectée : $VPS_IP"
+# Bracketer l'IPv6 pour les URLs
+if [[ "$VPS_IP" == *:* ]]; then
+    VPS_URL="[$VPS_IP]"
+else
+    VPS_URL="$VPS_IP"
+fi
 
 # ════════════════════════════════════════════════════════════
 section "1 — Paquets système"
@@ -84,8 +90,8 @@ DB_NAME=$DB_NAME
 DB_USER=$DB_USER
 DB_PASS=$DB_PASS
 VPS_IP=$VPS_IP
-FRONTEND_URL=http://$VPS_IP
-BACKEND_URL=http://$VPS_IP:$BACKEND_PORT
+FRONTEND_URL=http://$VPS_URL
+BACKEND_URL=http://$VPS_URL:$BACKEND_PORT
 CREDS
 chmod 600 "$CREDS_FILE"
 
@@ -117,12 +123,13 @@ composer install --no-dev --optimize-autoloader --no-interaction
 
 # Crée le .env si absent
 if [ ! -f .env ]; then
+    APP_KEY="base64:$(php -r 'echo base64_encode(random_bytes(32));')"
     cat > .env <<ENV
 APP_NAME=GestSoutenance
 APP_ENV=production
-APP_KEY=
+APP_KEY=$APP_KEY
 APP_DEBUG=false
-APP_URL=http://$VPS_IP:$BACKEND_PORT
+APP_URL=http://$VPS_URL:$BACKEND_PORT
 
 APP_LOCALE=fr
 APP_FALLBACK_LOCALE=fr
@@ -143,11 +150,10 @@ CACHE_STORE=array
 QUEUE_CONNECTION=sync
 FILESYSTEM_DISK=local
 
-FRONTEND_URL=http://$VPS_IP
+FRONTEND_URL=http://$VPS_URL
 
 MAIL_MAILER=log
 ENV
-    php artisan key:generate --no-interaction
 else
     warning ".env déjà présent, pas de réécriture."
 fi
@@ -176,7 +182,7 @@ fi
 
 cd "$FRONTEND_DIR"
 # Variable d'env de build pointant vers l'API
-echo "VITE_API_URL=http://$VPS_IP:$BACKEND_PORT" > .env.production
+echo "VITE_API_URL=http://$VPS_URL:$BACKEND_PORT" > .env.production
 npm ci --silent
 npm run build
 chown -R www-data:www-data dist
@@ -246,8 +252,8 @@ systemctl reload nginx
 section "✓ Déploiement terminé"
 # ════════════════════════════════════════════════════════════
 echo ""
-echo -e "  ${GREEN}Frontend${NC} : http://$VPS_IP"
-echo -e "  ${GREEN}API      ${NC} : http://$VPS_IP:$BACKEND_PORT/api"
+echo -e "  ${GREEN}Frontend${NC} : http://$VPS_URL"
+echo -e "  ${GREEN}API      ${NC} : http://$VPS_URL:$BACKEND_PORT/api"
 echo ""
 echo -e "  Credentials enregistrés dans : ${YELLOW}$CREDS_FILE${NC}"
 echo ""
