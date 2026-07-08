@@ -5,13 +5,7 @@ use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\SalleController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\DocumentController;
-use App\Http\Controllers\Enseignant\DashboardController;
-use App\Http\Controllers\Enseignant\IndisponibiliteController;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Secretaire\JuryController;
-use App\Http\Controllers\Secretaire\PvController;
+use App\Http\Controllers\Admin\SalleController;
 use App\Http\Controllers\Secretaire\SoutenanceController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,12 +48,12 @@ Route::middleware(['auth', 'verified', 'role:administrateur'])->prefix('admin')-
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('/users', UserController::class);
     Route::resource('/salles', SalleController::class);
-
+    
     // Audit et Configuration
-    Route::get('/audit', [AuditController::class, 'index'])->name('admin.audit');
-    Route::delete('/audit/clean', [AuditController::class, 'clean'])->name('admin.audit.clean');
-    Route::get('/config', [ConfigController::class, 'index'])->name('admin.config');
-    Route::put('/config', [ConfigController::class, 'update'])->name('admin.config.update');
+    Route::get('/audit', [App\Http\Controllers\Admin\AuditController::class, 'index'])->name('admin.audit');
+    Route::delete('/audit/clean', [App\Http\Controllers\Admin\AuditController::class, 'clean'])->name('admin.audit.clean');
+    Route::get('/config', [App\Http\Controllers\Admin\ConfigController::class, 'index'])->name('admin.config');
+    Route::put('/config', [App\Http\Controllers\Admin\ConfigController::class, 'update'])->name('admin.config.update');
 });
 
 // ==========================================
@@ -90,25 +84,19 @@ Route::middleware(['auth', 'verified', 'role:secretaire_pedagogique,administrate
 // ENSEIGNANT - Routes protégées par rôle
 // ==========================================
 Route::middleware(['auth', 'verified', 'role:enseignant'])->prefix('enseignant')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('enseignant.dashboard');
-
-    // Jury (confirmation/refus de participation)
+    Route::get('/dashboard', [App\Http\Controllers\Enseignant\DashboardController::class, 'index'])->name('enseignant.dashboard');
+    
+    // Routes Jury
     Route::get('/jury', [App\Http\Controllers\Enseignant\JuryController::class, 'index'])->name('enseignant.jury');
-    Route::put('/jury/{jury}/confirm', [App\Http\Controllers\Enseignant\JuryController::class, 'confirm'])->name('enseignant.jury.confirm');
-    Route::put('/jury/{jury}/decline', [App\Http\Controllers\Enseignant\JuryController::class, 'decline'])->name('enseignant.jury.decline');
-
-    // PV (consultation)
+    Route::post('/jury/{id}/confirm', [App\Http\Controllers\Enseignant\JuryController::class, 'confirm'])->name('enseignant.jury.confirm');
+    Route::post('/jury/{id}/refuse', [App\Http\Controllers\Enseignant\JuryController::class, 'refuse'])->name('enseignant.jury.refuse');
+    
+    // Routes PV
     Route::get('/pv/{soutenance}/create', [App\Http\Controllers\Enseignant\PvController::class, 'create'])->name('enseignant.pv.create');
     Route::post('/pv', [App\Http\Controllers\Enseignant\PvController::class, 'store'])->name('enseignant.pv.store');
     Route::get('/pv/{pv}/edit', [App\Http\Controllers\Enseignant\PvController::class, 'edit'])->name('enseignant.pv.edit');
     Route::put('/pv/{pv}', [App\Http\Controllers\Enseignant\PvController::class, 'update'])->name('enseignant.pv.update');
     Route::get('/pv/{pv}', [App\Http\Controllers\Enseignant\PvController::class, 'show'])->name('enseignant.pv.show');
-
-    // Indisponibilités
-    Route::get('/indisponibilites', [IndisponibiliteController::class, 'index'])->name('enseignant.indisponibilites.index');
-    Route::post('/indisponibilites', [IndisponibiliteController::class, 'store'])->name('enseignant.indisponibilites.store');
-    Route::put('/indisponibilites/{indisponibilite}', [IndisponibiliteController::class, 'update'])->name('enseignant.indisponibilites.update');
-    Route::delete('/indisponibilites/{indisponibilite}', [IndisponibiliteController::class, 'destroy'])->name('enseignant.indisponibilites.destroy');
 });
 
 // ==========================================
