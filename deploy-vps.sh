@@ -103,6 +103,16 @@ else
 fi
 
 cd "$BACKEND_DIR"
+
+# Répertoires requis par Laravel (souvent absents après un git clone)
+mkdir -p bootstrap/cache \
+         storage/framework/cache/data \
+         storage/framework/sessions \
+         storage/framework/views \
+         storage/logs
+chown -R www-data:www-data bootstrap/cache storage
+chmod -R 775 bootstrap/cache storage
+
 composer install --no-dev --optimize-autoloader --no-interaction
 
 # Crée le .env si absent
