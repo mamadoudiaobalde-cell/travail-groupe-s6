@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DocumentController;
 use App\Http\Controllers\Api\Enseignant\IndisponibiliteController;
 use App\Http\Controllers\Api\Enseignant\JuryController as EnseignantJuryController;
+use App\Http\Controllers\Api\Enseignant\SoutenanceController as EnseignantSoutenanceController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\Responsable\ExportController as ResponsableExportController;
 use App\Http\Controllers\Api\Responsable\PvController as ResponsablePvController;
@@ -62,6 +63,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // ENSEIGNANT
     // ==========================================
     Route::middleware('role:enseignant')->prefix('enseignant')->group(function () {
+        Route::get('soutenances', [EnseignantSoutenanceController::class, 'index']);
         Route::get('jury', [EnseignantJuryController::class, 'index']);
         Route::put('jury/{jury}/confirm', [EnseignantJuryController::class, 'confirm']);
         Route::put('jury/{jury}/decline', [EnseignantJuryController::class, 'decline']);
