@@ -21,7 +21,7 @@ class SalleSeeder extends Seeder
         ];
 
         foreach ($salles as $salle) {
-            Salle::factory()->create($salle);
+            Salle::firstOrCreate(['nom' => $salle['nom']], array_merge($salle, ['actif' => true]));
         }
     }
 }
