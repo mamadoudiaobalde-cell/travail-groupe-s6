@@ -5,7 +5,6 @@ use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\SalleController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\SalleController;
 use App\Http\Controllers\Secretaire\SoutenanceController;
 use Illuminate\Support\Facades\Route;
 
