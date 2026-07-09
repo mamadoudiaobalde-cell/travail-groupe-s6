@@ -1,25 +1,15 @@
 <?php
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/ibrahimadev
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-<<<<<<< HEAD
-
-class User extends Authenticatable
-{
-    use HasFactory, Notifiable;
-=======
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
->>>>>>> origin/ibrahimadev
 
     protected $fillable = [
         'name',

@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "2827fbb3ed6f1289189f591ee921990e",
-=======
     "content-hash": "e77f538bfc433bf4ada91f60d348bf8d",
->>>>>>> origin/ibrahimadev
     "packages": [
         {
             "name": "brick/math",
@@ -1344,8 +1340,6 @@
             "time": "2026-05-19T00:47:18+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "laravel/sanctum",
             "version": "v4.3.2",
             "source": {
@@ -1409,7 +1403,6 @@
             "time": "2026-04-30T11:46:25+00:00"
         },
         {
->>>>>>> origin/ibrahimadev
             "name": "laravel/serializable-closure",
             "version": "v2.0.13",
             "source": {

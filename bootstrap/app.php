@@ -1,9 +1,6 @@
 <?php
 
-<<<<<<< HEAD
-=======
 use App\Http\Middleware\CheckRole;
->>>>>>> origin/ibrahimadev
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -18,14 +15,6 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         // Alias des middlewares personnalisés
         $middleware->alias([
-<<<<<<< HEAD
-            'role' => \App\Http\Middleware\CheckRole::class,
-        ]);
-    })
-    ->withExceptions(function (Exceptions $exceptions) {
-        //
-    })->create();
-=======
             'role' => CheckRole::class,
         ]);
     })
@@ -34,4 +23,3 @@ return Application::configure(basePath: dirname(__DIR__))
             return $request->is('api/*') || $request->expectsJson();
         });
     })->create();
->>>>>>> origin/ibrahimadev
